@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad-6</title>
+    <script src = "suica.min.js"></script>
+
+    <script>
+        function main(x, y, z, a, b){
+            new Suica();
+            oxyz();
+            demo();
+            
+            rectangle([x, y, z], [a, 2*a]).focus=[1,0,0];
+            var rec = rectangle([x, y+3*a/2, z-a/2], [a, 2*a]);
+            rec.spin=radians(90);
+            rec.mode=Suica.LINE;
+            rec.focus = [1, 0, 0];
+            var rec = rectangle([x, y+a, z-2*a], [a, 2*a]);
+            rec.focus=[1, 0, 0];
+            var rec=rectangle([x, y-a/2, z-3*a/2], [a, a*2]);
+            rec.spin =radians(90);
+            rec.mode=Suica.LINE;
+            rec.focus = [1, 0, 0];
+
+            
+
+        }
+    </script>
+</head>
+<body onload = "main(10, 10, 5, 4, 14)">
+    <canvas width="1450" height="650" style = "border: solid black 2px;">Не се поддържа canvas!</canvas>
+    <noscript>Не се поддържа JavaScript!</noscript>
+</body>
+</html>

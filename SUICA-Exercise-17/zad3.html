@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad3</title>
+    <script src="suica.min.js"></script>
+
+    <script>
+        function main()
+        {
+            p = new Suica();
+            orthographic(-1000, 1000);
+            lookAt([0, 0, 100], [0, 0, 0], [0, 1, 0]);
+
+            p.gl.canvas.addEventListener('mousedown', mouseDown);
+            p.gl.canvas.addEventListener('mouseup', mouseUp);
+            p.gl.canvas.addEventListener('mousemove', mouseMove);
+
+            a = point([random(-200, 200), random(-200, 200), random(-200, 200)]).custom({interactive: true, pointSize: 10});
+            b = point([random(-200, 200), random(-200, 200), random(-200, 200)]).custom({interactive: true, pointSize: 10});
+            c = point([random(-200, 200), random(-200, 200), random(-200, 200)]).custom({interactive: true, pointSize: 10});
+            
+
+            segment(a.center,b.center);
+			segment(b.center,c.center);
+			segment(c.center,a.center);
+        }
+
+        var obj;
+        function mouseDown(event)
+        {
+            x = event.clientX;
+            y = event.clientY;
+            obj = p.objectAtPoint(x, y);
+        }
+
+        function mouseUp(event)
+        {
+            obj = undefined;
+        }
+
+        function mouseMove(event)
+        {
+            if(obj)
+            {
+                obj.center[0]+=event.clientX-x;
+                obj.center[1]-=event.clientY-y;
+            }
+            x = event.clientX;
+            y = event.clientY;
+        }
+
+    </script>
+</head>
+<body onload="main()">
+        <noscript>
+            Искаме JavaScript, но няма!
+        </noscript>
+        
+        <canvas width="1000" height="550" style="border: solid 1px Black;">
+            Искаме canvas, но няма!
+        </canvas>
+    </body>
+</html>

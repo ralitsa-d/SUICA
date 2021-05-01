@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad_8</title>
+    <script src="suica.min.js"></script>
+
+    
+
+    <script>
+        function main(n, r, x, y, z){
+            new Suica();
+            oxyz();
+            demo();
+            var c=point([x, y, z]);
+            c.pointSize = 10;
+
+           
+
+            for(var i=0; i<n; i++)
+            {
+                //var a = radians((360/n)*i);
+                var a = radians(random(0, 360));// must be in radians
+                var xp = x+r*Math.cos(a);
+                var yp = y+r*Math.sin(a);
+                var zp = z+0;
+
+                var p = point([xp, yp, zp]);
+                //a+=radians(360/n);
+                p.pointSize = 8;
+
+                if(i%2==0){
+                    p.color = [0, 0, 0];
+                }
+            }
+
+
+        }
+    </script>
+</head>
+
+<body onload="main(31, 20, 2, 2, 10)">
+    <canvas width="1100" height="620" style="border: solid black 2px;">Не се поддържа canvas!</canvas>
+    <noscript>Не се поддържа JavaScript!</noscript>
+</body>
+</html>
+
+<!-- how do you create a point?? -->
+
+<!-- point([x, y, z]);
+var A = point([x, y, z]);
+A.pointSize(10); po podrazbirane razmeryt e 3
+A.color = [0, 0, 0] r g b ; po podrazbirane e red;
+A.center; Връща array [x, y, z];
+A.center[0] -> x koordinata, pyrviqt element na masiva A.center; -->

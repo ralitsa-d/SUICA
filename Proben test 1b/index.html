@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proben Test 1</title>
+
+    <style>
+        h1{
+            color:red;
+        }
+        #text{
+            width:50%;
+            padding: 1em;
+            margin:auto;
+        }
+        img{
+            width:100%;
+        }
+
+    </style>
+
+    <script>
+        function makeRed(){
+            let para = document.getElementsByTagName('p');
+            for(var i=0; i<para.length; i++)
+            {
+                para[i].style.color='red';
+            }
+        }
+    </script>
+</head>
+<body>
+
+       
+    <div id="text">
+        <h1 >Lorem ipsum dolor</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda nostrum 
+            quidem corrupti quis atque asperiores, quod doloribus cum porro quos aspernatur 
+            deserunt molestiae saepe. 
+            Excepturi, odio. Molestias est ipsam rerum?Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Phasellus non suscipit lacus, eu iaculis nibh. Vivamus volutpat ut purus vitae posuere. Vivamus feugiat 
+             auctor finibus. Nunc convallis arcu porta elit porttitor interdum ac nec augue. Suspendisse aliquam et
+              massa ut sollicitudin. Nulla eget fringilla nunc, vel sodales orci. Proin quis velit commodo, tempor nunc 
+              molestie, tempor ipsum. Mauris vel sagittis arcu, ac sodales lorem. Ut posuere non ligula mattis dapibus.  </p>
+
+            <p>Maecenas in pretium sem. Donec efficitur eros et nibh ornare hendrerit. Donec non nulla nulla. 
+                Donec viverra ex nec mattis euismod. Integer quis lorem rutrum nunc commodo vehicula et vitae elit. 
+                Cras et condimentum est. Etiam vitae semper ipsum. Nunc massa magna, semper et nisi ut, lobortis 
+                lacinia nisi. Aliquam sed commodo enim. Praesent eleifend porta augue vitae congue. Curabitur at 
+                ante cursus, mattis turpis id, ornare diam. Ut velit tellus, luctus vitae arcu in, faucibus dignissim quam.
+                Suspendisse potenti. Aliquam ut accumsan nisl. Etiam ut sodales lacus. Praesent ante sem, pellentesque quis 
+                lacinia vitae, suscipit non dui. Donec quis nibh auctor, viverra dui quis, aliquam quam. Etiam maximus 
+                lorem eu imperdiet tincidunt. Nam ipsum nibh, gravida non sem vel, hendrerit accumsan ipsum. 
+                Aliquam suscipit lorem fermentum convallis mollis. Fusce tristique erat erat, ac egestas elit 
+                hendrerit non. Suspendisse fringilla accumsan vehicula. Sed ut velit pretium velit ullamcorper 
+                pulvinar in in quam. Ut viverra orci eu lacinia porttitor. 
+            </p>
+            <img src="Image3.jpg" alt="">
+            <button onclick="makeRed()">Click me</button>
+    </div>
+</body>
+</html>

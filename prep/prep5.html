@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad1</title>
+    <script src="suica.min.js"></script>
+
+        <script>
+            function main(){
+                p = new Suica();
+                oxyz();
+                //demo();
+                a = sphere([0,0,0],4);
+			b = sphere([0,0,0],4);
+			c = sphere([0,0,0],4);
+			circle([0,0,0],30).custom({
+				mode: Suica.LINE,
+				color: [0.3,0,1]
+			});
+                p.nextFrame = loop;
+		    }
+
+            
+            function loop(){
+                t = 3*Suica.time;
+                ang1 = radians(50+30*Math.sin(t));
+                a.center = [30*Math.cos(ang1), 30*Math.sin(ang1), 0];
+                ang2 = radians(40*Math.sin(t/2));
+                b.center = [30*Math.cos(ang2), 30* Math.sin(ang2), 0];
+                ang3 = radians(150+100*Math.sin(t));
+                c.center = [30*Math.cos(ang3), 30*Math.sin(ang3), 0];
+            }
+            
+
+           
+        </script>
+    
+</head>
+<body onload="main()">
+    <canvas width="1450" height="650" style = "border: solid black 2px;">Не се поддържа canvas!</canvas>
+    <noscript>Не се поддържа JavaScript!</noscript>
+</body>
+</html>

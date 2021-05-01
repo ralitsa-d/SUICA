@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UPr 6</title>
+
+    <script>
+        function calc(){
+            var n1 = document.getElementById('name1').value;
+        var n2 = document.getElementById('name2').value;
+        var y = document.getElementById('year');
+        var Yvalue = Number(y.value);
+        var d = new Date(); // s funkciqta d.getFullYear() wzemame samo godinata
+
+        var res = document.getElementById('result');
+        
+
+            if(n1.length>0 && n2.length>0)
+            {
+                if(Yvalue>0 && Yvalue< d.getUTCFullYear())
+                {
+                    res.innerHTML="Nastoqshtata vyzrast na "+ n1 + " " + n2 + " e " + (d.getFullYear() - Yvalue) + " godini."
+                }
+                else{
+                    res.innerHTML = "Vyvedete hubava godina, molqqq!!"
+                }
+                
+            }
+            else{
+                res.innerHTML = "Vyvedete ime i familiq, molqqq!!"
+            }
+
+            
+        }
+        
+    </script>
+</head>
+<body>
+    <p> Enter first name
+        <input type="text" id="name1" value="" size="20">
+    </p>
+    <p>Enter Second name
+        <input type="text" id="name2" value="" size="20">
+    </p>
+    <p> Enter Year
+        <input type="text" id="year" size="40">
+    </p>
+    <p id="result">
+
+    </p>
+    <button onclick="calc()">Izchisli godini</button>
+</body>
+</html>

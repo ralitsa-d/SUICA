@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad1</title>
+
+    <script src = "suica.min.js"></script>
+
+    <script>
+    
+        function main(n){
+            new Suica();
+            oxyz();
+            demo();
+            //line([] navhalo , [] krai);
+            //ray([], []);
+            //segment([], []);
+
+            var A = point([random(-20, 20), random(-20, 20), random(-20, 20)]);
+            A.pointSize = 15;
+            A.color =[0, 0, 1];
+
+            var x = A.center[0];// x koordinatata na A
+            var y = A.center[1]; // y koordinatata na A
+            var z = A.center[2];//z koordinatata na A
+
+            segment([x, y, z], [x+n, y, z]);
+            ray([x, y, z], [x, y+n, z]);
+            line([x, y, z], [x, y, z+n]);
+
+
+        }
+    </script>
+
+</head>
+<body onload = "main(12)">
+        <canvas width="1100" height="620" style="border: solid black 2px;">Не се поддържа canvas!</canvas>
+        <noscript>Не се поддържа JavaScript!</noscript>
+    
+</body>
+</html>

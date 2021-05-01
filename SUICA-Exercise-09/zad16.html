@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad16</title>
+
+    <script src = "suica.min.js"></script>
+
+    <script>
+    
+        function main(n, r){
+            new Suica();
+            oxyz();
+            demo();
+            
+            var o1 = point([random(-20, 20), random(-20, 20), random(-20, 20)]);
+            o1.pointSize = 10;
+
+            var o2 = point([o1.center[0], o1.center[1], random(-20, 20)]);
+            o2.pointSize = 10;
+            
+            for(var i=0; i<n; i++){
+                var a = radians(i*360/n);
+
+                var xp =o1.center[0] + r*Math.cos(a);
+                var yp = o1.center[1]+r*Math.sin(a);
+                var zp = o1.center[2];
+
+                var xq =o2.center[0] + r*Math.cos(a);
+                var yq = o2.center[1]+r*Math.sin(a);
+                var zq = o2.center[2];
+
+                segment([xp, yp, zp], [xq, yq, zq]);
+            }
+
+        }
+    </script>
+
+</head>
+<body onload = "main(100, 20)">
+        <canvas width="1100" height="620" style="border: solid black 2px;">Не се поддържа canvas!</canvas>
+        <noscript>Не се поддържа JavaScript!</noscript>
+    
+</body>
+</html>

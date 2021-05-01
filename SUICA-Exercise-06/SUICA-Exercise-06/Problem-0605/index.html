@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>upr 5</title>
+
+    <script>
+        function chosenDay()
+        {
+            let res = document.getElementById('result');
+            let day = document.getElementById('days').value;
+            result.innerHTML = "Izbraniqt den ot sedmicata e "+day+".";
+        }
+    </script>
+</head>
+<body>
+    <p>
+        Izberete den ot sedmicata:
+        <select name="Days" id="days" onchange="chosenDay()">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+
+        </select>
+    </p>
+    <p id='result'>
+
+    </p>
+</body>
+</html>

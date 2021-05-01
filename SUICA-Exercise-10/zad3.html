@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad-3</title>
+    <script src = "suica.min.js"></script>
+
+    <script>
+        function main(x, y, z, a){
+            new Suica();
+            oxyz();
+            demo();
+            var sq = new Suica.Square([x, y, z], a);
+            sq.mode = Suica.LINE;
+            sq.focus = [1, 0, 0];
+            var s = square([x, y, z], a/Math.sqrt(2));
+            s.mode=Suica.LINE;
+            s.focus=[1, 0, 0];
+            s.spin = radians(45);
+            
+        }
+    </script>
+</head>
+<body onload = "main(2, 2, 2, 10)">
+    <canvas width="1450" height="650" style = "border: solid black 2px;">Не се поддържа canvas!</canvas>
+    <noscript>Не се поддържа JavaScript!</noscript>
+</body>
+</html>

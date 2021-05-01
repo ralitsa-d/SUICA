@@ -1,0 +1,77 @@
+body {background-color: #AD9C84;
+	 color: #1A4551;
+	 text-align: justify;
+	 font-family: Arial, sans-serif;
+	 }
+	 
+div.page {border: none;
+		 width:80%;
+		 background-color: AntiqueWhite;
+		 margin: 2em auto;
+		 padding: 1em;
+		}
+	 
+ul {margin-top: 2em; 
+   margin-bottom: 3em; 
+   text-align: center; 
+   padding: 20px; 
+   border-bottom: solid #3690AB 1px; 
+   }
+	 
+	 
+li {background-color: rgba(135,206,235,1.0);
+  display: inline; 
+  padding: 5px 10px;
+  margin: 10px; 
+  text-align: center;
+  }
+
+div.theorem {background-color: #FFFBF5;
+			color: #42B0D1;
+			font-family: "Times New Roman", serif;
+			font-style: italic;
+			font-size: 13pt;
+			margin-left: 5%;
+			margin-right: 5%;
+			padding: 5px 2em;
+			border-left: solid rgba(135,206,235,1.0) 15px;
+			border-right: solid rgba(135,206,235,1.0) 15px;
+			}
+			
+h1 {color: #3690AB;
+   text-align:center;
+   text-transform: uppercase;}
+   
+div.formula {text-align:center;
+				font-size: 16pt;}
+			/* font-weight: bold;} */
+
+p b {font-size: 15pt;}
+
+a:link {text-decoration: none; 
+	    color: AntiqueWhite; 
+	   }
+
+a:visited {color: #3690AB;} 
+
+a:hover {color: #FFFFFF;} 
+li:hover {background-color: #AD9C84;}
+
+
+img {position: relative;
+	left:40%;
+	top: 20px;
+	margin-bottom: 30px;
+	}
+	
+.fig {font-size: 90%;
+	 font-style: italic;
+	 font-family: "Times New Roman", serif;
+	 text-align: center;
+	 }
+	 
+#refer:link {text-decoration: underline;
+			color: #AD9C84;}
+#refer:visited {color: #1A4551;}
+#refer:hover {color: #3690AB;}
+

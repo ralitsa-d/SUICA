@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="suica.min.js"></script>
+
+    
+
+    <script>
+        function main(n){
+            new Suica();
+            oxyz();
+            demo();
+
+            var a = point([0, 0, 0]);
+            a.pointSize = 20;
+            a.color = [Math.random(), Math.random(), Math.random];
+
+            var b = point([n, 0, 0]);
+            b.pointSize=20;
+            b.color = [Math.random(), Math.random(), Math.random()];
+
+            var c = point([n, n, 0]);
+            c.pointSize=20;
+            c.color = [Math.random(), Math.random(), Math.random()];
+
+            var d = point([0, n, 0]);
+            d.pointSize = 20;
+            d.color = [Math.random(), Math.random(), Math.random()];
+
+            var a1 = point([0, 0, n]);
+            a1.pointSize = 20;
+            a1.color = [Math.random(), Math.random(), Math.random];
+
+            var b1 = point([n, 0, n]);
+            b1.pointSize=20;
+            b1.color = [Math.random(), Math.random(), Math.random()];
+
+            var c1 = point([n, n, n]);
+            c1.pointSize=20;
+            c1.color = [Math.random(), Math.random(), Math.random()];
+
+            var d1 = point([0, n, n]);
+            d1.pointSize = 20;
+            d1.color = [Math.random(), Math.random(), Math.random()];
+        }
+    </script>
+</head>
+
+<body onload="main(17)">
+    <canvas width="1100" height="620" style="border: solid black 2px;">Не се поддържа canvas!</canvas>
+    <noscript>Не се поддържа JavaScript!</noscript>
+</body>
+</html>
+
+<!-- how do you create a point?? -->
+
+<!-- point([x, y, z]);
+var A = point([x, y, z]);
+A.pointSize(10); po podrazbirane razmeryt e 3
+A.color = [0, 0, 0] r g b ; po podrazbirane e red;
+A.center; Връща array [x, y, z];
+A.center[0] -> x koordinata, pyrviqt element na masiva A.center; -->

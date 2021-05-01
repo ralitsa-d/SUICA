@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Пример 1602</title>
+
+	<script src="suica.min.js"></script>
+
+	<script>
+		
+		function main()
+		{
+			p = new Suica();
+			lookAt([0,0,50],[0,0,0],[0,0,1]);
+			
+			prism([0,0,0],20,2,5);
+			
+			p.nextFrame = CahageViewpoint;
+
+		}
+		
+		
+		function CahageViewpoint()
+		{	
+			t = Suica.time;
+			lookAt([50*Math.cos(t),50*Math.sin(t),50-100*t],[0,0,0],[0,0,1]);
+		}
+		
+	</script>	
+</head>
+
+<body onload="main()">
+	<noscript>
+		Искаме JavaScript, но няма!
+	</noscript>
+	
+	<canvas width="740" height="350" style="border: solid 1px Black;">
+		Искаме canvas, но няма!
+	</canvas>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad15</title>
+    <script src = "suica.min.js"></script>
+
+    <script>
+        function main(n, r, x, y, z){
+            new Suica();
+            oxyz();
+            demo();
+
+            for(var i=0; i<n; i++){
+            var a = radians(random(0, 360));
+            var b = (a+360/n);
+            
+            var xp = x;
+            var yp = y+r*(Math.sin(a));
+            var zp = z + r*(Math.cos(a))
+
+            var xq = x;
+            var yq = y+r*(Math.sin(b));
+            var zq = z+r*(Math.cos(b));
+
+            var s = segment([xp, yp, zp], [xq, yq, zq]);
+            s.color = [0.73, 0.53, 0.05];
+            }
+        }
+
+        
+
+
+    </script>
+</head>
+<body onload="main(100, 20, 0, 0, 4)">
+    <canvas width="1100" height="620" style="border: solid black 2px;">Не се поддържа canvas!</canvas>
+    <noscript>Не се поддържа JavaScript</noscript>
+</body>
+</html>

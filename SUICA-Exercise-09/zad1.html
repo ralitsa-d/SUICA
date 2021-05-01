@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad1</title>
+
+    <script src = "suica.min.js"></script>
+
+    <script>
+        function vLen(a){
+            return Math.sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2]);
+        }
+    
+        function main(){
+            new Suica();
+            oxyz();
+            demo();
+            var p = [12, 5, 1];
+            var q = [-3, 2, 1];
+            console.log(vLen(p) + vLen(q));
+
+        }
+    </script>
+
+</head>
+<body onload = "main()">
+        <canvas width="1100" height="620" style="border: solid black 2px;">Не се поддържа canvas!</canvas>
+        <noscript>Не се поддържа JavaScript!</noscript>
+    
+</body>
+</html>

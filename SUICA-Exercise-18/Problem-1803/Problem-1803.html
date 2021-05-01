@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Задача 1803</title>
+
+	<script src="suica.min.js"></script>
+
+	<script>
+		function main()
+		{
+			p = new Suica();
+			orthographic(-1000,1000);
+			lookAt([0,0,100],[0,0,0],[0,1,0]);
+			
+			p.gl.canvas.addEventListener('mousedown',mouseDown);
+			p.gl.canvas.addEventListener('mouseup',mouseUp);
+			p.gl.canvas.addEventListener('mousemove',mouseMove);
+			
+			A = point([random(100,200),random(-150,-50),0]).custom({pointSize:8, color:[0,0,0]});
+			B = point([random( -100, 100),random(-50,50),0]).custom({pointSize:8, color:[0,0,0]});
+			C = point([random( -100, 200),random(50,150),0]).custom({pointSize:8, color:[0,0,0]});
+			
+			segment(A.center,B.center).custom({color: [0,0,0]});
+			segment(B.center,C.center).custom({color: [0,0,0]});
+			segment(C.center,A.center).custom({color: [0,0,0]});
+			
+			line(A.center,B.center);
+			
+			
+			AB = vectorPoints(B.center,A.center);
+			L = AB[0]*AB[0]+AB[1]*AB[1];
+			
+			// изчисляване на s
+			s =((C.center[0]-A.center[0])*AB[0]+(C.center[1]-A.center[1])*AB[1])/L;
+			
+			// намиране на най-близката до C точка
+			dx = A.center[0]+s*AB[0];
+			dy = A.center[1]+s*AB[1];
+			D = point([dx,dy,0]).custom({pointSize: 15, interactive:true});
+			
+			segment(C.center,D.center).custom({color: [1,0,0]});
+			
+			
+		}
+
+		var obj = null;
+
+		function mouseDown(event)
+		{
+			obj = p.objectAtPoint(event.clientX,event.clientY);
+
+		}
+		
+		function mouseUp(event)
+		{
+			obj = null;
+		}
+
+		function mouseMove(event)
+		{
+			x = event.clientX-event.target.offsetLeft-event.target.offsetWidth/2;
+			y = -(event.clientY-event.target.offsetTop-event.target.offsetHeight/2);
+			
+			if (obj)
+			{
+				// изчисляване на k
+				k =((x-A.center[0])*AB[0]+(y-A.center[1])*AB[1])/L;
+				
+
+				// намиране на най-близката до C точка
+				D.center[0] = A.center[0]+k*AB[0];
+				D.center[1] = A.center[1]+k*AB[1];
+				
+				
+				// намиране на върха C в зависимост от позицията на петата на височината, използваме вектор колинеарен на АB
+				f=1
+				m =((D.center[0]-C.center[0])*f*AB[0]+(D.center[1]-C.center[1])*f*AB[1])/(f*AB[0]*f*AB[0]+f*AB[1]*f*AB[1]);
+			
+				C.center[0] = C.center[0]+m*f*AB[0];
+				C.center[1] = C.center[1]+m*f*AB[1];
+			}
+		}
+		
+
+	</script>	
+</head>
+
+<body onload="main()">
+	<noscript>
+		Искаме JavaScript, но няма!
+	</noscript>
+	
+	<canvas width="800" height="500" style="border: solid 1px Black;">
+		Искаме canvas, но няма!
+	</canvas>
+</body>

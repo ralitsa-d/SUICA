@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head> 
+	<meta charset="utf-8">
+	<title>Пример 1604-2</title>
+
+	<script src="suica.min.js"></script>
+
+	<script>
+		
+		function main()
+		{
+			p = new Suica();
+			
+			c = sphere([random(-10,10),random(-10,10),random(-10,10)],3,15).custom({color:[1,0.3,0]});
+			r = 10
+			s = ([c.center[0],c.center[1],c.center[2] + c.height + r - 1],r).custom({color:[0,0.5,0], opacity: 0.5});
+			
+			lookAt([c.center[0],c.center[1]+100,10],c.center,[0,0,1]);
+		}
+		
+		
+	</script>	
+</head>
+
+<body onload="main()">
+	<noscript>
+		Искаме JavaScript, но няма!
+	</noscript>
+	
+	<canvas width="740" height="350" style="border: solid 1px Black;">
+		Искаме canvas, но няма!
+	</canvas>
+</body>
+
+</html>

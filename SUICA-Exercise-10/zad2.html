@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad2</title>
+    <script src="suica.min.js"></script>
+    <script>
+        function main(n, x, y, z, a){
+            new Suica();
+            oxyz();
+            demo();
+            //for(var i=0; i<n; i++){
+            while(a>=1){
+                var sq = new Suica.Square([x, y, z], a);
+                sq.mode = Suica.LINE;
+                sq.focus = [1, 0, 0];
+                a*=0.5;
+            }
+            
+        }
+    </script>
+</head>
+<body onload="main(10, 4, 2, 2, 15)">
+    <noscript>
+        Ne se poddyrja JAVASCRIPT!
+    </noscript>
+    <canvas width="1300" height="650" style="border: solid black 2px;">
+        Ne se poddyrja canvas!
+    </canvas>
+    
+    
+</body>
+</html>

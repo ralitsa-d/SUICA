@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Пример 1403</title>
+
+	<script src="suica.min.js"></script>
+
+	<script>
+		
+		function main()
+		{
+			p = new Suica();
+			
+			R = 20;
+			r = 4;
+			alpha = radians(1);
+			beta = radians(1);
+			a = sphere([1, 2, 3], R).custom({color: [0, 0.9, 0.9]});
+			sph = sphere([a.center[0]+(R+r)*Math.cos(alpha)*Math.cos(beta), a.center[1]+((R+r)*Math.sin(alpha)*Math.cos(beta)), a.center[2]+(R+r)*Math.sin(beta)], r).custom({color: [1, 0, 0]});
+
+			p.nextFrame = loop;
+		}
+		
+		function loop()
+		{	
+			var k= radians(1);
+			sph.center = [a.center[0]+(R+r)*Math.cos(alpha)*Math.cos(beta), a.center[1]+((R+r)*Math.sin(alpha)*Math.cos(beta)), a.center[2]+(R+r)*Math.sin(beta)];
+						
+			alpha +=k;
+			beta+=k;
+		}
+		
+	</script>	
+</head>
+
+<body onload="main()">
+	<noscript>
+		Искаме JavaScript, но няма!
+	</noscript>
+	
+	<canvas width="740" height="350" style="border: solid 1px Black;">
+		Искаме canvas, но няма!
+	</canvas>
+</body>
+</html>

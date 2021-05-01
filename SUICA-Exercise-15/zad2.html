@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad2</title>
+    <script src="suica.min.js"></script>
+
+    <script>
+        function main()
+        {
+            var p = new Suica();
+            p.gl.canvas.addEventListener('mousedown', mouseDown, false);
+            orthographic(-200, 200);
+            lookAt([0, 0, 100], [0, 0, 0], [0, 1, 0]);
+            k =0;
+        }
+        function newXY(event)
+        {
+            var x = event.clientX - event.target.offsetLeft - event.target.offsetWidth/2;
+            var y = - (event.clientY - event.target.offsetTop - event.target.offsetHeight/2);
+            return ([x, y, 0]);
+        }
+
+        function mouseDown(event)
+        {
+            if(k>0)
+            {
+                point(newXY(event)).custom({pointSize: 10});
+                segment(secondpos, newXY(event));
+                lastpos = newXY(event);
+                k++;
+                if(k==3){
+                    segment(firstpos, newXY(event));
+                    firstpos = lastpos;
+                    lastpos = newXY(event);
+                }
+            }
+            else{
+                point(newXY(event)).custom({pointSize: 10});
+                fisrtpos = newXY(event);
+                secondpos =  newXY(event);
+                k= k+1;
+            }
+            
+        }
+    
+    </script>
+</head>
+<body onload="main()">
+    <noscript>
+        nqma javascript
+    </noscript>
+    <canvas width="1000" height="400" style = "border: solid black 2px;">nqma canvas</canvas>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad2</title>
+    <script src="suica.min.js"></script>
+
+    <script>
+        function main()
+        {
+            p = new Suica();
+            orthographic(-1000, 1000);
+            lookAt([0, 0, 100], [0, 0, 0], [0, 1, 0]);
+
+            p.gl.canvas.addEventListener('mousedown', mouseDown);
+            p.gl.canvas.addEventListener('mouseup', mouseUp);
+            p.gl.canvas.addEventListener('mousemove', mouseMove);
+
+            c = circle([random(-100, 100), random(-100, 100), random(-100, 100)]).custom({mode: Suica.LINE, interactive: true});
+            a = radians(random(0, 360));
+            b = point([c.center[0] + c.radius*Math.cos(a), c.center[1]+c.radius*Math.sin(a), 0]).custom({pointSize: 10, interactive: true});
+            segment(c.center, b.center);
+        }
+
+        var obj;
+        function mouseDown(event)
+        {
+            x = event.clientX;
+            y = event.clientY;
+            obj = p.objectAtPoint(x, y);
+        }
+
+        function mouseUp(event)
+        {
+            obj = undefined;
+        }
+
+        function mouseMove(event)
+        {
+            if(obj)
+            {
+                obj.center[0]+=event.clientX-x;
+                obj.center[1]-=event.clientY-y;
+                c.radius = Math.sqrt( Math.pow((b.center[0] - c.center[0]), 2) + 
+                Math.pow((b.center[1] - c.center[1]), 2) + Math.pow((b.center[2] - c.center[2]), 2) );
+            }
+            
+        }
+    </script>
+</head>
+<body onload="main()">
+    <noscript>
+        Искаме JavaScript, но няма!
+    </noscript>
+            
+    <canvas width="1000" height="550" style="border: solid 1px Black;">
+        Искаме canvas, но няма!
+    </canvas>
+</body>
+</html>

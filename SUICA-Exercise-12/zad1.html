@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad1</title>
+    <script src="suica.min.js"></script>
+
+    <script>
+        function per1(object)
+        {
+            var k = random(0.8, 1);
+            object.color = [k, k, k-0.3];
+            return object;
+        }
+
+        function main(R, n){
+            new Suica();
+            oxyz();
+            demo();
+            
+            var a = radians(random(0, 360));
+            for(var i=0; i<n; i++){
+                x = R*Math.cos(a);
+                y = R*Math.sin(a);
+                z = 0;
+
+                sphere([x, y, z], R*Math.sin(radians(180/n)));
+                per1(sphere);
+                a+=radians(360/n);
+            }
+        }
+    </script>
+</head>
+<body onload = "main(15, 15)">
+        <canvas width="1450" height="650" style = "border: solid black 2px;">Не се поддържа canvas!</canvas>
+        <noscript>Не се поддържа JavaScript!</noscript>
+    
+</body>
+</html>

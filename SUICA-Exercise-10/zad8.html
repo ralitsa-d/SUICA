@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad-8</title>
+    <script src = "suica.min.js"></script>
+
+    <script>
+        function main(n, x, y, z, a){
+            new Suica();
+            oxyz();
+            demo();
+            yini=y;
+            for(var i=1; i<n; i++){
+                for(var j=1; j<=(n+1)-i; j++){
+                    var c = cube([x, y, z], a);
+                    c.color=[random(0, 1), random(0, 1), random(0, 1)];
+                    y+=a;
+                }
+                z+=a;
+                y=yini+i*a/2;
+                
+            }
+        }
+    </script>
+</head>
+<body onload = "main(4, 5, 5, -15, 10)">
+    <canvas width="1450" height="650" style = "border: solid black 2px;">Не се поддържа canvas!</canvas>
+    <noscript>Не се поддържа JavaScript!</noscript>
+</body>
+</html>

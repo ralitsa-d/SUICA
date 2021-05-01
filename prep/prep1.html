@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zad1</title>
+    <script src="suica.min.js"></script>
+
+        <script>
+            function main(){
+                p = new Suica();
+                oxyz();
+                //demo();
+                a = rectangle([0, 2, 2.5], [5, 4]).custom({color: [1, 0, 0], focus: [1, 0, 0]});
+                b = rectangle([0, 2, 7.5], [5, 4]).custom({color: [1, 1, 0], focus: [1, 0, 0]});
+                c= sameAs(b).custom({center: [0, 2, 12.5], color: [0, 1, 0]});
+
+                a1 = sameAs(a).custom({center: [0, 30, 2.5]});
+                b1 = sameAs(b).custom({center: [0, 30, 7.5]});
+                c1 = sameAs(c).custom({center: [0, 30, 12.5]}); 
+
+                d = circle([0, 16, 7.5], 1).custom({color: [0, 0, 0], focus: [1, 0, 0]});
+                vector=vectorPoints([0, 5, 2.5], [0, 16, 7.5]);
+                vector1=vectorPoints([0, 27, 12.5], [0, 16, 7.5]);
+                p.nextFrame = loop;
+		    }
+
+            function loop(){
+                if(Suica.time%12 < 3){
+                    for(var i=0; i<3; i++){
+                        d.center[i] +=vector[i]*Suica.dTime/3;
+                    }
+                }
+                if(Suica.time%12>=3 &&Suica.time%12<6){
+                    for(var i =0; i<3; i++){
+                        d.center[i]-=vector[i]*Suica.dTime/3;
+                    }
+                }
+                if(Suica.time%12 >=6 && Suica.time%12 <9){
+                    for(var i=0; i<3; i++){
+                        d.center[i]+=vector1[i]*Suica.dTime/3;
+                    }
+                }
+                if((Suica.time%12 >=9)){
+                    for(var i=0; i<3; i++){
+                        d.center[i]-=vector1[i]*Suica.dTime/3;
+                    }
+                }
+            }
+            
+
+           
+        </script>
+    
+</head>
+<body onload="main()">
+    <canvas width="1450" height="650" style = "border: solid black 2px;">Не се поддържа canvas!</canvas>
+    <noscript>Не се поддържа JavaScript!</noscript>
+</body>
+</html>

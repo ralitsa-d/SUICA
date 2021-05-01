@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fisrt real SUICA exercise</title>
+
+    <script src="suica.min.js"></script>
+
+    <script>
+        function main(){
+            new Suica();
+            background([1, 0.85, 0.53]);
+            oxyz();
+            //demo(150, 5, 1.5, -1);
+            demo(100, 3, 1, 0.2);
+            //var c = cube([5, 5, 2.5,], 5);
+        }
+    </script>
+</head>
+<body onload="main()">
+    <canvas width="1150" height="700" style="border: solid 1px black;">
+         Не се поддържа Canvas!
+    </canvas>
+    <noscript>Не се поддържа JavaScript</noscript>
+</body>
+</html>

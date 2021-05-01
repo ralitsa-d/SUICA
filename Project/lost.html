@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project - Swing</title>
+
+    <script src="suica.min.js"></script>
+
+    <script>
+		
+            function main()
+            {
+                suica = new Suica();
+                lookAt([10,0,-100],[10,0,0],[0,1,0]);
+                //demo();
+
+                suica.gl.canvas.addEventListener('mousedown', MouseDown);
+                suica.gl.canvas.addEventListener('mousemove', MouseMove);
+                suica.gl.canvas.addEventListener('mouseup', MouseUp);
+
+                a = group([]);
+
+                beam = cuboid([0,-10,-10],[50,1,6]).custom({focus: [0, 0, -1]});
+                opora = prism([0, -14, -7], 4, 6 ,3).custom({focus: [0, 0, -1], spin: radians(30), color: [0.3, 0.3, 0.7]});
+                rect1 = rectangle([20, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+                rect2 = rectangle([15, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+                rect3 = rectangle([10, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+                rect4 = rectangle([5, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+                rect5 = rectangle([0, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+                rect6 = rectangle([-5, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+                rect7 = rectangle([-10, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+                rect8 = rectangle([-15, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+                rect9 = rectangle([-20, -10, -10], [6, 1]).custom({mode: Suica.LINE, color: [1, 1, 1], focus: [1, 0, 0]});
+
+                c60 = cube([36, -5, -10], 6).custom({color: [0.9, 0.2, 0.2], interactive: true});
+                c30 = cube([41, 0.7, -10], 4).custom({color: [0.9, 0.7, 0.2], interactive: true});
+                c20 = cube([36, 5, -10], 3).custom({color: [0.2, 0.9, 0.7], interactive: true});
+                c10 = cube([36, 8, -10], 2).custom({color: [0.4, 0.3, 0.7], interactive: true});
+                o1 = sameAs(c60).custom({center:[45, -5, -10]});
+                o2 = sameAs(c30).custom({center:[47, 0.7, -10]});
+                o3 = sameAs(c30).custom({center:[36, 0.7, -10]});
+                o4 = sameAs(c30).custom({center:[30, 0.7, -10]});
+                o5 = sameAs(c20).custom({center:[48, 5, -10]});
+                o6 = sameAs(c20).custom({center:[43, 5, -10]});
+                o7 = sameAs(c20).custom({center:[30, 5, -10]});
+                o8 = sameAs(c10).custom({center:[48, 8, -10]});
+                o9 = sameAs(c10).custom({center:[44, 8, -10]});
+                o10 = sameAs(c10).custom({center:[40, 8, -10]});
+                o11 = sameAs(c10).custom({center:[32, 8, -10]});
+
+                a.add(beam);
+                a.add(rect1);
+                a.add(rect2);
+                a.add(rect3);
+                a.add(rect4);
+                a.add(rect5);
+                a.add(rect6);
+                a.add(rect7);
+                a.add(rect8);
+                a.add(rect9);
+
+                // initial = a; c60init = c60; c30init = c30; c20init = c20; c10init = c10;
+                // o1init = o1; o2init = o2; o3init = o3; o4init = o4; o5init = o5; o6init = o6; 
+                // o7init = o7; o8init = o8; o9init = o9; o10init = o10; o11init = o11;               
+            }
+
+            var obj;
+            function MouseDown(event){
+                x = event.clientX;
+                y = event.clientY;
+                obj = suica.objectAtPoint(x, y, -10);
+            }
+            function MouseMove(event){
+                if(obj){
+                    obj.center[0] -= event.clientX-x;
+	                obj.center[1] -= event.clientY-y;
+	                x = event.clientX;
+	                y = event.clientY;
+                }
+            }
+
+            function MouseUp(event){
+                silaL=0;
+                silaR=0;
+                weightR=0;
+                weightL=0;
+                if(o1.center[0]<25 && o1.center[0]>-25){ 
+                    o1.center[1] = -6.5;
+                    var sila1 = Math.abs(o1.center[0]-opora.center[0])*60;
+                    if(o1.center[0]>0 ) weightL+=sila1;
+                    else weightR+=sila1;
+                    a.add(o1);
+                }
+
+                if(c60.center[0]<25 && c60.center[0]>-25){
+                        c60.center[1] = -6.5;
+                        var sila2 = Math.abs(c60.center[0]-opora.center[0])*60;
+                    if(c60.center[0]>0 && c60.center[0]<25) weightL+=sila2;
+                    else weightR+=sila2;
+                    a.add(c60);
+                } 
+
+                if(c30.center[0]<25 && c30.center[0]>-25){
+                        c30.center[1] = -7.5;
+                        var sila3 = Math.abs(c30.center[0]-opora.center[0])*30;
+                    if(c30.center[0]>0 && c30.center[0]<25) weightL+=sila3;
+                    else weightR+=sila3;
+                    a.add(c30);
+                } 
+                if(o2.center[0]<25 && o2.center[0]>-25){
+                        o2.center[1] = -7.5;
+                        var sila4 = Math.abs(o2.center[0]-opora.center[0])*30;
+                    if(o2.center[0]>0 && o2.center[0]<25) weightL+=sila4;
+                    else weightR+=sila4;
+                    a.add(o2);
+                } 
+                if(o3.center[0]<25 && o3.center[0]>-25){
+                        o3.center[1] = -7.5;
+                        var sila5 = Math.abs(o3.center[0]-opora.center[0])*30;
+                    if(o3.center[0]>0) weightL+=sila5;
+                    else weightR+=sila5;
+                    a.add(o3);
+                } 
+                if(o4.center[0]<25 && o4.center[0]>-25){
+                        o4.center[1] = -7.5;
+                        var sila6 = Math.abs(o4.center[0]-opora.center[0])*30;
+                    if(o4.center[0]>0) weightL+=sila6;
+                    else weightR+=sila6;
+                    a.add(o4);
+                } 
+
+                if(c20.center[0]<25 && c20.center[0]>-25){
+                        c20.center[1] = -8;
+                        var sila7 = Math.abs(c20.center[0]-opora.center[0])*20;
+                    if(c20.center[0]>0) weightL+=sila7;
+                    else weightR+=sila7;
+                    a.add(c20);
+                } 
+                if(o5.center[0]<25 && o5.center[0]>-25){
+                        o5.center[1] = -8;
+                        var sila8 = Math.abs(o5.center[0]-opora.center[0])*20;
+                    if(o5.center[0]>0) weightL+=sila8;
+                    else weightR+=sila8;
+                    a.add(o5);
+                } 
+                if(o6.center[0]<25 && o6.center[0]>-25){
+                        o6.center[1] = -8;
+                        var sila9 = Math.abs(o6.center[0]-opora.center[0])*20;
+                    if(o6.center[0]>0) weightL+=sila9;
+                    else weightR+=sila9;
+                    a.add(o6);
+                } 
+                if(o7.center[0]<25 && o7.center[0]>-25){
+                        o7.center[1] = -8;
+                        var sila10 = Math.abs(o7.center[0]-opora.center[0])*20;
+                    if(o7.center[0]>0) weightL+=sila10;
+                    else weightR+=sila10;
+                    a.add(o7);
+                } 
+
+                if(c10.center[0]<25 && c10.center[0]>-25){
+                        c10.center[1] = -8.5;
+                        var sila11 = Math.abs(c10.center[0]-opora.center[0])*10;
+                    if(c10.center[0]>0) weightL+=sila11;
+                    else weightR+=sila11;
+                    a.add(c10);
+                } 
+                if(o8.center[0]<25 && o8.center[0]>-25){
+                        o8.center[1] = -8.5;
+                        var sila12 = Math.abs(o8.center[0]-opora.center[0])*10;
+                    if(o8.center[0]>0) weightL+=sila12;
+                    else weightR+=sila12;
+                    a.add(o8);
+                } 
+                if(o9.center[0]<25 && o9.center[0]>-25){
+                        o9.center[1] = -8.5;
+                        var sila13 = Math.abs(o9.center[0]-opora.center[0])*10;
+                    if(o9.center[0]>0) weightL+=sila13;
+                    else weightR+=sila13;
+                    a.add(o9);
+                } 
+                if(o10.center[0]<25 && o10.center[0]>-25){
+                        o10.center[1] = -8.5;
+                        var sila14 = Math.abs(o10.center[0]-opora.center[0])*10;
+                    if(o10.center[0]>0) weightL+=sila14;
+                    else weightR+=sila14;
+                    a.add(o10);
+                } 
+                if(o11.center[0]<25 && o11.center[0]>-25){
+                        o11.center[1] = -8.5;
+                        var sila15 = Math.abs(o11.center[0]-opora.center[0])*10;
+                    if(o11.center[0]>0) weightL+=sila15;
+                    else weightR+=sila15;
+                    a.add(o11);
+                } 
+
+                obj=undefined;
+            }
+
+            function anim1(){
+                t = Suica.time;
+                a.spin = radians(t*6);
+            }
+            function anim2(){
+                t = Suica.time;
+                a.spin =  radians(-t*6);
+            }
+            function izchisli(){
+                if(weightL>weightR){
+                    //suica.nextFrame = anim1;
+                    a.spin = radians(15);
+                }
+                else if(weightL<weightR){
+                    //suica.nextFrame = anim2;
+                    a.spin = radians(-15);
+                }
+                info1 = document.getElementById('info1');
+                info2 = document.getElementById('info2');
+                info1.innerHTML = 'Въртящ момент(ляво): '+weightL +' N.m'
+                info2.innerHTML = 'Въртящ момент(дясно): '+ weightR + ' N.m';
+            }
+
+            k1 =0;
+            function button1(){
+                k1 = 1-k1;
+                r1 = document.getElementById("r1");
+                im1 = document.getElementById("im1");
+                if(k1==1){
+                    r1.style.display = 'block';
+                    im1.style.display = 'block';
+                }
+                if(k1==0){
+                    r1.style.display = "none"; 
+                    im1.style.display = "none";
+                } 
+            }
+
+            k2 =0;
+            function button2(){
+                k2 = 1-k2;
+                r2 = document.getElementById("r2");
+                im2 = document.getElementById("im2");
+                if(k2==1){
+                    r2.style.display = 'block';
+                    im2.style.display = 'block';
+                }
+                if(k2==0){
+                    r2.style.display = 'none';
+                    im2.style.display = 'none';
+                } 
+            } 
+
+            k3 =0;
+            function button3(){
+                k3 = 1-k3;
+                r3 = document.getElementById("r3");
+                im3 = document.getElementById("im3");
+                if(k3==1){
+                    r3.style.display = 'block';
+                    im3.style.display = 'block';
+                }
+                else{
+                    r3.style.display = 'none';
+                    im3.style.display = "none";
+                } 
+            }
+
+            function toTheLeft(){
+                if(opora.center[0]<=15){
+                    opora.center[0]+=5;
+                    a.origin[0]+=5;
+                    a.center[0]+=5;
+                }
+            }
+            function toTheRight(){
+                if(opora.center[0]>=-15){
+                    opora.center[0]-=5;
+                    a.origin[0]-=5;
+                    a.center[0]-=5;
+                } 
+            }
+
+            function izchisti(){
+                document.getElementById("info1").innerHTML = '';
+                document.getElementById("info2").innerHTML = '';
+                a.spin = radians(0);
+                c60.center = [36, -5, -10];
+                c30.center = [41, 0.7, -10];
+                c20.center = [36, 5, -10];
+                c10.center = [36, 8, -10];
+                o1.center = [45, -5, -10]; o2.center = [47, 0.7, -10];
+                o3.center = [36, 0.7, -10]; o4.center = [30, 0.7, -10]; o5.center = [48, 5, -10]; o6.center = [43, 5, -10]; 
+                o7.center = [30, 5, -10];
+                o8.center = [48, 8, -10]; o9.center =[44, 8, -10] ; o10.center = [40, 8, -10]; o11.center = [32, 8, -10];
+                weightL = 0; weightR = 0;
+            }
+        </script>	
+</head>
+
+
+<body background="pics/wooden1.jpg" onload="main()">
+    
+    <div style="border: dotted brown 2px; position: fixed; padding: 3px; background-color:rgb(245, 187, 137);">
+        <h3>Съдържание</h3>
+        <hr style="margin: 5px;">
+        <div id="toHide" style="margin: 3px;">
+            <a href="#vyrtqshtMoment" style="padding: 6px;">Въртящ момент</a>
+            <br>
+            <a href="#UslovieZaRavnovesie" style="padding: 6px;">Условие за равновесие</a>
+            <br>
+            <a href="#VidoveLostove" style="padding: 6px;">Видове лостове</a>
+            <br>
+            <a href="#zadachi" style="padding: 6px;">Задачи</a>
+        </div> 
+    </div>
+
+
+    <div style="border: solid brown 2px; margin-left: 15%; margin-right: 15%; margin-top: 5%; margin-bottom: 5%; background-color:rgb(253, 194, 142);">
+        <h1>Люлка</h1>
+        <h3>Лостове и тежести</h3>
+        <hr style="margin: 20px;">
+        <div id="vyrtqshtMoment" >
+            <h3 style="font-family: 'Courier New', Courier, monospace; color: rgb(148, 23, 23); text-align:left;">
+                Въртящ момент
+            </h3>
+            <p>Всеки знае, че за да развие стегната гайка е най-лесно да използва гаечен ключ. 
+            Също така е по-лесно да отвори врата като я бута близо до дръжката, а не до пантите.</p>
+            <p>
+                Това дали едно твърдо тяло ще се върти, зависи от:
+                <ul>
+                    <li><b>големината на приложената сила (F)</b></li>
+                    <li><b>рамото на силата (l)</b> - <i>това е разстоянието от мястото, където е приложена силата
+                        до точката на въртене(оста).</i>
+                    </li>
+                </ul> 
+            </p>
+            <p>
+                <b>Въртящ момент (M)</b> - това е физична величина, характеристика на дадена сила.
+                Въртящият момент определя способността на една сила да предизвиква въртене. <br><br>
+                Изчислявяа се по формулата: 
+                <div id="formula">
+                    M = F.l <br>
+                    въртящият момент = големината на силата . рамото на силата
+                </div>
+                Едининцата за въртящ момент е нютон-метър (N.m). <br>
+                Въртящият момент на сила F = 1N с рамо l = 1m е 1(N.m)
+            </p>
+        </div>
+
+        <div id="basic">
+            <p style="padding-left: 10px; font-family: 'Courier New', Courier, monospace; color: rgb(148, 23, 23); text-align:left;">
+                <i>Избери няколко кубчета и ги постави на различни места върху лоста. След това натисни бутона "изчисли" и виж резултата.
+                    Премести опората преди да поставиш кубчетата и да натиснеш бутона "Изчисли".
+                </i>
+            </p>
+            <div style="top:-24.7em; left:0.5em; text-align:center; width:598px;">
+                <button onclick= "izchisti()">
+                    Изчисти
+                </button>
+                <button onclick="izchisli()" style="font-weight: bold; font-family: 'Courier New', Courier, monospace; color: rgb(148, 23, 23);">
+                    Изчисли
+                </button>
+                <button onclick="toTheLeft()">
+                    Постави основата 5 м. наляво.
+                </button>
+                <button onclick="toTheRight()">
+                    Премести основата 5 м. надясно.
+                </button>
+            </div>
+            
+            <h3 id="info1" style="padding-left: 10px; font-family: 'Courier New', Courier, monospace; color: rgb(148, 23, 23); text-align:left;"></h2>
+            <h3 id="info2" style="padding-left: 10px; font-family: 'Courier New', Courier, monospace; color: rgb(148, 23, 23); text-align:left;"></h2>
+            <canvas width="1010" height="550" style="border: solid 1px Black; margin: 10px;">
+                Искаме canvas, но няма!
+            </canvas>
+            <p style="text-align:center; color: blue; font-size: 22px;"> Лилавото кубче действа със сила 10 N</p>
+            <p style="text-align:center; color: rgb(12, 187, 187); font-size: 22px;">Светлосиньото кубче действа със сила 20 N</p>
+            <p style="text-align:center; color: rgb(199, 147, 3); font-size: 22px;">Жълтото кубче дайства със сила 30 N</p>
+            <p style="text-align:center; color: red; font-size: 22px;">Червеното кубче действа със сила 60 N</p>
+        </div>
+
+        <div id="UslovieZaRavnovesie">
+            <h3 style="font-family: 'Courier New', Courier, monospace; color: rgb(148, 23, 23); text-align:left;">Условие за равновесие на лост</h3>
+            <p>
+                Лостът е прост механизъм, чиято цел е да ни спестява сила. Прдставлява греда с опорна точка, около която се върти.
+                <br>
+                Ако приложим малка сила върху по-дългото рамо на лоста, бихме могли да повдигнем по-тежък товар, но е поставен на по-късото рамо. <br><br>
+                Лостът се намира в равновесие, тогава и само тогава, когато въртящите моменти на силите, приложени върху 
+                двете му рамена са равни. <br><br>
+                <b>Условие за равновесие на лост:</b>
+                Произведението на дължината на едното рамо по силата, приложена към него да е равно на произведението 
+                на дължината на другото рамо по силата, приложена към това рамо.
+                <div id="formula">
+                     F<sub>1</sub>.l<sub>1</sub> = F<sub>2</sub>.l<sub>2</sub> 
+                </div>
+        
+            </p>
+        </div>
+        
+        <div id="VidoveLostove">
+            <h3 style="font-family: 'Courier New', Courier, monospace; color: rgb(148, 23, 23); text-align:left;">
+                Видове лостове
+            </h3>
+            <p>
+                Различаваме два вида лостове според това къде се намира опорната точка:
+                <ul>
+                    <li><b>Едностранни (от втори род)</b></li>
+                    <li><b>Двустранни (от първи род)</b></li>
+                </ul>
+            </p>
+            <p>
+                При едностранните опорната точка е разположена в единия край на лоста, като това означава, че ще има само едно рамо.
+                Също така, това означава, че силите биват приложени само от едната страна. <br> <br>
+                При двустранните е точно обратното - опорната точка е раположена извън краищата на лоста, тоест той лежи на нея.
+                Това означава, че лоста има две рамена и силите се прилагат и върху двете рамена.
+            </p>
+        </div>
+
+
+
+        <hr style="margin: 12px;">
+        <div id="zadachi">
+            <h2>Задачи</h2>
+            <div class="uslovie">
+                <h3>Задача 1</h3>
+                <p>Шофьор пука гума и му се налага да я смени. Той използва гаечен ключ и прилага сила 130 N 
+                    на разстояние 40 см от точката на въртене на гайката. Колко е въртящият момент на силата, която 
+                    шофьорът прилага?
+                </p>
+            </div>
+            <button class="resh" onclick = "button1()">Решение</button>
+            <div class="reshenie" id="r1">
+                <p>
+                    <i>Гаечният ключ е пример за едностранен лост. Сила се прилага само върху едното рамо.</i> <br>
+                    Знаем, че силата е 130 N. За рамото на силата знаем, че е 40 см, но трябва да го превърнем в метри. 
+                    40 см = 0.4 м. Това означава, че F.l = (130 N).(0.4 m) = 52 (N.m)  
+                </p>
+            </div>
+            <aside>
+                <img src="pics/гаечен ключ.jpg" id="im1" class="images" width="200px" height="200px" alt="гаечен ключ">
+            </aside>
+
+            <div class="uslovie">
+                <h3>Задача 2</h3>
+                <p>
+                    Ако от лявата страна на лоста действаме със сила 60 N на разстояние 5 m от оста, то
+                    кое е най-лекото възможно кубче в интерактивното поле, с което, ако го поставим на 
+                    разстояние 17.5 m ще можем да наклоним 
+                    лоста на дясната страна?
+                </p>
+            </div>
+            <button class="resh" onclick ="button2()">Решение</button>
+            <div class="reshenie" id = "r2">
+                <p>
+                    От лявата страна въртящият момент е F.l = (60 N).(5 m) = 300 (N.m) <br>
+                    За дясната страна знаем, че l = 17.5 m. Искаме въртящият момент отляво да е по-малък от 
+                    въртящия момент отдясно. <br>
+                    300 < x.17.5 Това означава, че при l = 17.14 (приблизително) въртящите моменти ще са изравнени и лостът няма да е наклонен.
+                    Следователно търсим най-лекото кубче, което да е по-тежко от 17.14 N. Това е светлосиньото кубче.
+                </p>
+            </div>
+            <aside>
+                <img src="pics/reshenie2.PNG" id="im2" class="images" width="340px" height="200px" alt="">
+            </aside>
+
+            <div class="uslovie">
+                <h3>Задача 3</h3>
+                <p>
+                    Две момчета разполагат с дъска дълга 5 метра и искат с нея да си направят люлка. Пробемът е, 
+                    че едното тежи 45 кг, а другото - 55 кг. Ако поставят опората точно по-средата на дъската, 
+                    по-тежкото момче винаги ще накланя люлката към неговата страна. Къде трябва да поставят опората, за да може 
+                    люлката да е в равновесие, когато и двете момчета седнат от двете й страни?
+                </p>
+            </div>
+            <button class="resh" style="margin-bottom: 20px;" onclick = "button3()">
+                Решение
+            </button>
+            <div class="reshenie" id="r3">
+                <p>
+                    Да използваме формулата F1.l1 = F2.l2. Знаем, че F1 = 45, F2 = 55. Следователно, ако прехвърлим l1 отдясно, получаваме, че
+                    45 = 55.(l2/l1). Това означава, че отношението l2/l1 =  45/55 = 0.(81). Нека въведем променливата х. Тогава
+                    l2.x = 45, a l1.x = 55. Знаем, че дължината на дъската е 5 метра, а също и че l1 + l2 = 5. 
+                    Можем да сметнем l1.x+l2.x = 55+45 = 100. <br>
+                    Следователно х.(l1+l2) = 100. Тоест x.5 = 100, откъдето следва, че х = 20. <br>
+                    Тогава l1.20 = 55 и l2.20 = 45. Тоест l1 = 2.75 и l2 = 2.25. Ако децата поставят опората
+                    така, че тя да разделя дъската на 2.75 м и 2.25 м, тогава ще имат люлка.
+                </p>
+            </div>
+            <aside>
+                <img src="pics/lulka.png" id="im3" class="images" style="margin-bottom: 15px;" width="400px" height="300px" alt="">
+            </aside>
+        </div>
+
+        <noscript>
+            Искаме JavaScript, но няма!
+        </noscript>
+    </div>
+    
+    <style>
+        body h1, h2, h3{
+            margin-top: 2em;
+            text-align:center;
+            font-family:'Courier New', Courier, monospace;
+            color:brown;
+        }
+        #vyrtqshtMoment{
+            margin: 5%;
+            font-size: 1.2em;
+        }
+        #UslovieZaRavnovesie{
+            margin: 5%;
+            font-size: 1.2em;
+        }
+        #VidoveLostove{
+            margin: 5%;
+            font-size: 1.2em;
+        }
+        #formula{
+            margin: 4%;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(148, 23, 23);
+            font-weight: 600;
+        }
+        .uslovie{
+            padding-left: 5%;
+            margin-right: 5%;
+            font-size:17px;
+        }
+        .reshenie{
+            padding-left: 5%;
+            display: none;
+            font-size: 17px;
+            margin-right: 5%;
+        }
+        .resh{
+            margin-left: 5%;
+        }
+        .images{
+            display: none;
+            margin-left: 5%;
+        }
+        a:link {
+            color: brown; 
+        }
+
+        a:visited {
+            color:brown;
+        }
+
+        a:hover {
+            color: brown;
+        }
+
+        a:active {
+            color: brown;
+        }
+        
+
+        
+    </style>
+</body>
+</html>
